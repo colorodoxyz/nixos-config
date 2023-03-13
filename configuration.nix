@@ -2,31 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Bootloader.
   # boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.grub = {
     enable = true;
     version = 2;
     device = "nodev";
     useOSProber = true;
     efiSupport = true;
-    enableCryptodisk = true;
   };
 
-  swapDevices = [ {
-    device = "/var/lib/swapfile";
-    size = 16*1024;
-  } ];
-
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  networking.hostId = "3082e4d6";
 
   # Setup audio
   hardware.pulseaudio = {
@@ -35,6 +25,55 @@
   };
   nixpkgs.config.pulseaudio = true;
   users.extraUsers.colorodo.extraGroups = [ "audio" ];
+
+  programs.fuse.userAllowOther = true;
+
+  home-manager.users.colorodo = ({pkgs, ...} : {
+    imports = [inputs.impermanence.nixosModules.home-manager.impermanence];
+    home.stateVersion = "23.05";
+    programs.home-manager.enable = true;
+    home.persistence."/persist/home/colorodo" = {
+      directories = [ ".ssh"
+	".config/discord"
+        ".local/share/Steam"
+        ".mozilla"
+        ".local/share/lutris"];
+      allowOther = true;
+    };
+    xsession.windowManager.i3.enable = true;
+    xsession.windowManager.i3.config = {
+      modifier = "Mod4";
+      keybindings = let
+        modifier = "Mod4";
+      in pkgs.lib.mkOptionDefault {
+	"${modifier}+j" = "focus left";
+	"${modifier}+k" = "focus down";
+	"${modifier}+l" = "focus up";
+	"${modifier}+semicolon" = "focus right";
+        "${modifier}+Return" = "exec kitty";
+        "${modifier}+b" = "exec firefox";
+      };
+    };
+  });
+
+  hardware.nvidia.modesetting.enable = true;
+
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+
+  boot.kernelParams = [ "video=efifb:off,vesafb:off" "gfxpayload=text" ];
+
+  environment.persistence."/persist" = {
+    files = [
+      "/home/colorodo/.vimrc"
+      "/etc/machine-id"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+    ];
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -73,6 +112,7 @@
 
   # Configure keymap in X11
   services.xserver = {
+    videoDrivers = [ "nvidia" ];
     layout = "us";
     xkbVariant = "";
 
@@ -97,24 +137,32 @@
       ];
     };
 
-    xrandrHeads = [
-      {
-        output = "DP-3";
-        primary = true;
-      }
-      {
-        monitorConfig = "Option \"Rotate\" \"left\"";
-        output = "HDMI-1";
-        primary = false;
-      }
-    ];
+    screenSection = ''
+	Option    "nvidiaXineramaInfoOrder" "DFP-1"
+	Option    "metamodes" "DP-0: nvidia-auto-select +0+240, HDMI-0: nvidia-auto-select +3440+0 {rotation=left}"
+      '';
+
+    #xrandrHeads = [
+    #  {
+    #    output = "DP-0";
+    #    primary = true;
+    #  }
+    #  {
+    #    monitorConfig = "Option \"Rotate\" \"left\"";
+    #    output = "HDMI-0";
+    #    primary = false;
+    #  }
+    #];
   };
+
+  users.users.root.initialHashedPassword = "$6$44KyzgHx9JrLoigD$nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
     isNormalUser = true;
-    description = "Spencer Liu";
+    description = "Speener";
     extraGroups = [ "networkmanager" "wheel" ];
+    initialHashedPassword = "$6$44KyzgHx9JrLoigD$nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
     packages = with pkgs; [];
   };
 
@@ -130,7 +178,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    jq
+    gcc
+    gdb
     wireguard-tools
     vim
     os-prober

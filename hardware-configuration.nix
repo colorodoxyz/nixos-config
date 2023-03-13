@@ -8,22 +8,37 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/fc18b03b-f4d8-4206-8507-b36dd122b5b8";
-      fsType = "ext4";
+    { device = "stateless/rootfs";
+      fsType = "zfs";
     };
 
-  boot.initrd.luks.devices."luks-63e1294c-de93-4ca8-8d98-71a1e46fbb2c".device = "/dev/disk/by-uuid/63e1294c-de93-4ca8-8d98-71a1e46fbb2c";
+  fileSystems."/nix" =
+    { device = "stateless/nix";
+      fsType = "zfs";
+    };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/B475-99A0";
+  fileSystems."/persist" =
+    { device = "stateless/persist";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/10F6-4E60";
       fsType = "vfat";
     };
+
+  boot.initrd.postDeviceCommands = ''
+      zpool import -Nf stateless
+      zfs rollback -r stateless/rootfs@empty
+      zpool export -a
+    '';
 
   swapDevices = [ ];
 
