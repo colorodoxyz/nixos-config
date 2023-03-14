@@ -15,6 +15,8 @@
       modules = [
         ./configuration.nix
         ./hardware-configuration.nix
+        ./home.nix
+        ./audio.nix
 	inputs.home-manager.nixosModules.home-manager
 	inputs.impermanence.nixosModules.impermanence
       ];

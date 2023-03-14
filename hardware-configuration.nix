@@ -13,6 +13,8 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  users.groups.workspace.gid = 629;
+
   fileSystems."/" =
     { device = "stateless/rootfs";
       fsType = "zfs";
@@ -29,7 +31,20 @@
       neededForBoot = true;
     };
 
+  fileSystems."/workspace" =
+    { device = "stateless/workspace";
+      fsType = "zfs";
+      neededForBoot = true;
+      options = [ "gid=629" ];
+    };
+
   fileSystems."/boot" =
+  { device = "stateless/boot";
+    fsType = "zfs";
+    neededForBoot = true;
+    };
+
+  fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/10F6-4E60";
       fsType = "vfat";
     };
