@@ -5,6 +5,8 @@
 { config, pkgs, inputs, ... }:
 
 {
+  boot.supportedFilesystems = ["ntfs"];
+
   # Bootloader
   boot.loader = {
     efi = {
@@ -35,6 +37,7 @@
   environment.persistence."/persist" = {
     files = [
       "/home/colorodo/.vimrc"
+      "/home/colorodo/.bashrc"
       "/home/colorodo/.ssh/id_ed25519"
       "/home/colorodo/.ssh/id_ed25519.pub"
       "/home/colorodo/.ssh/known_hosts"
@@ -169,6 +172,9 @@
     discord
     vlc
     efibootmgr
+    docker
+    gnumake
+    qemu
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

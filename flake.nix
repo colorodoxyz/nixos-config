@@ -17,6 +17,7 @@
         ./hardware-configuration.nix
         ./home.nix
         ./audio.nix
+        ./mouse.nix
 	inputs.home-manager.nixosModules.home-manager
 	inputs.impermanence.nixosModules.impermanence
       ];
