@@ -9,6 +9,7 @@
     home.persistence."/persist/home/colorodo" = {
       directories = [ ".ssh"
 	".config/discord"
+        #".config/spotify"
         ".local/share/Steam"
         ".mozilla"];
       allowOther = true;
