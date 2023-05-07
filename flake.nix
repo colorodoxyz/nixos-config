@@ -15,9 +15,13 @@
       modules = [
         ./configuration.nix
         ./hardware-configuration.nix
-        ./home.nix
+        ./environment.nix
         ./audio.nix
+        ./host.nix
         ./mouse.nix
+        ./bash.nix
+        ./boot.nix
+        ./home.nix
 	inputs.home-manager.nixosModules.home-manager
 	inputs.impermanence.nixosModules.impermanence
       ];

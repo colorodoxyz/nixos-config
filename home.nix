@@ -1,8 +1,12 @@
 { inputs, ... }:
 
 {
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Setup home-manager
   home-manager.users.colorodo = ({pkgs, ...} : {
+
     imports = [inputs.impermanence.nixosModules.home-manager.impermanence];
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
@@ -10,7 +14,7 @@
       directories = [
         ".ssh"
         ".vim"
-        ".config/i3"
+        #".SpaceVim"
         ".config/kitty"
         ".config/pulse"
         ".config/Signal"
@@ -22,11 +26,9 @@
       ];
       allowOther = true;
     };
-    /*
-    */
 
+/*
     xsession.windowManager.i3.enable = true;
-    /*
     xsession.windowManager.i3.config = {
       modifier = "Mod4";
       keybindings = let
@@ -44,7 +46,16 @@
         "${modifier}+Return" = "exec kitty";
         "${modifier}+b" = "exec firefox";
       };
-    };*/
+    };
   });
 
+  programs.git = {
+    enable = true;
+    config = {
+      user.Name = "Spencer Liu";
+      user.Email = "spencer.liu.liu@gmail.com";
+    };
+  };
+
+  */
 }

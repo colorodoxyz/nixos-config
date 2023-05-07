@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   # Setup audio
   hardware.pulseaudio = {
