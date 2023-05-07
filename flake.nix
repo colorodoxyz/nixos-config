@@ -21,6 +21,8 @@
         ./mouse.nix
         ./bash.nix
         ./boot.nix
+        ./video.nix
+        ./git.nix
         ./home.nix
 	inputs.home-manager.nixosModules.home-manager
 	inputs.impermanence.nixosModules.impermanence
