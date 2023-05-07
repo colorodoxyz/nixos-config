@@ -8,7 +8,7 @@
   home-manager.users.colorodo = ({pkgs, ...} : {
     imports = [
       inputs.impermanence.nixosModules.home-manager.impermanence
-      ./home/i3.nix
+      ./mgr/i3.nix
     ];
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;

@@ -9,8 +9,10 @@
 
   programs.fuse.userAllowOther = true;
 
-    networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  services.tailscale.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -44,14 +46,14 @@
     terminus_font
   ];
 
-  users.users.root.initialHashedPassword = "$6$44KyzgHx9JrLoigD$nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
+  users.users.root.initialHashedPassword = "nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
     isNormalUser = true;
     description = "Speener";
     extraGroups = [ "networkmanager" "wheel" "workspace" ];
-    initialHashedPassword = "$6$44KyzgHx9JrLoigD$nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
+    initialHashedPassword = ".";
     packages = with pkgs; [];
   };
 
