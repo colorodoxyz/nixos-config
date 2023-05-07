@@ -7,14 +7,26 @@
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
     home.persistence."/persist/home/colorodo" = {
-      directories = [ ".ssh"
+      directories = [
+        ".ssh"
+        ".vim"
+        ".config/i3"
+        ".config/kitty"
+        ".config/pulse"
+        ".config/Signal"
+        ".config/Slack"
 	".config/discord"
-        #".config/spotify"
+        ".config/spotify"
         ".local/share/Steam"
-        ".mozilla"];
+        ".mozilla"
+      ];
       allowOther = true;
     };
+    /*
+    */
+
     xsession.windowManager.i3.enable = true;
+    /*
     xsession.windowManager.i3.config = {
       modifier = "Mod4";
       keybindings = let
@@ -32,7 +44,7 @@
         "${modifier}+Return" = "exec kitty";
         "${modifier}+b" = "exec firefox";
       };
-    };
+    };*/
   });
 
 }

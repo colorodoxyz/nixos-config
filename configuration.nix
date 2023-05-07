@@ -43,6 +43,7 @@
       "/etc/ssh/ssh_host_rsa_key.pub"
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"
+      #"/etc/sudoers"
     ];
   };
 
@@ -150,12 +151,14 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     spotify
+    go_1_20
     grub
     steam
     gcc
     gdb
     wireguard-tools
     vim
+    spacevim
     os-prober
     wget
     git
@@ -174,6 +177,14 @@
     gnumake
     qemu
     jq
+    qbittorrent
+    signal-desktop
+    slack
+    droidcam
+    awscli
+    python3
+    poetry
+    neofetch
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
