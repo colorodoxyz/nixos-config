@@ -16,13 +16,15 @@
     firefox
     spotify
     go_1_20
+    rustc
+    lxappearance
     grub
     steam
     gcc
     gdb
     wireguard-tools
     vim
-    spacevim
+    neovim
     os-prober
     wget
     git

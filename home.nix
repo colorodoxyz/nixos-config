@@ -9,6 +9,8 @@
     imports = [
       inputs.impermanence.nixosModules.home-manager.impermanence
       ./mgr/i3.nix
+      #./kitty.nix
+      #./mgr/kitty.nix
     ];
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
@@ -17,7 +19,7 @@
         ".ssh"
         ".vim"
         #".SpaceVim"
-        ".config/kitty"
+        #".config/kitty"
         ".config/pulse"
         ".config/Signal"
         ".config/Slack"
@@ -28,10 +30,5 @@
       ];
       allowOther = true;
     };
-
-    /*imports = [
-      "home/i3.nix"
-    ];*/
-
   });
 }

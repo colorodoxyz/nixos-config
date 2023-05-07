@@ -46,14 +46,14 @@
     terminus_font
   ];
 
-  users.users.root.initialHashedPassword = "nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
+  users.users.root.initialHashedPassword = "";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
     isNormalUser = true;
     description = "Speener";
     extraGroups = [ "networkmanager" "wheel" "workspace" ];
-    initialHashedPassword = ".";
+    initialHashedPassword = "";
     packages = with pkgs; [];
   };
 
