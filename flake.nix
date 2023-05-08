@@ -23,8 +23,8 @@
         ./video.nix
         ./git.nix
         ./home.nix
-        #./spacevim.nix
         #./kitty.nix
+        #./spacevim.nix
         #./host.nix
         #./mouse.nix
 	inputs.home-manager.nixosModules.home-manager

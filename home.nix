@@ -8,9 +8,9 @@
   home-manager.users.colorodo = ({pkgs, ...} : {
     imports = [
       inputs.impermanence.nixosModules.home-manager.impermanence
+      ./kitty.nix
       ./mgr/i3.nix
-      #./kitty.nix
-      #./mgr/kitty.nix
+      #./git.nix
     ];
     home.stateVersion = "23.05";
     programs.home-manager.enable = true;
@@ -19,13 +19,13 @@
         ".ssh"
         ".vim"
         #".SpaceVim"
-        #".config/kitty"
         ".config/pulse"
         ".config/Signal"
         ".config/Slack"
 	".config/discord"
         ".config/spotify"
         ".local/share/Steam"
+        "go"
         ".mozilla"
       ];
       allowOther = true;

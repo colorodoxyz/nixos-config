@@ -5,11 +5,15 @@
 { config, pkgs, inputs, ... }:
 
 {
+  #options.boot.initrd.systemd.dbus.enable = true;
+  #options.services.dbus.enable = true;
   networking.hostId = "3082e4d6";
+
+  #config.services.dbus.enable = true;
 
   programs.fuse.userAllowOther = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "btwiusenixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.tailscale.enable = true;

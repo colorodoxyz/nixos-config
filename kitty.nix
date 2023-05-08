@@ -1,8 +1,8 @@
+{ config, lib, pkgs, ... }:
+
 {
-/*
   programs.kitty = {
     enable = true;
-    #theme = "Earthsong";
-  }
-  */
+    theme = "Argonaut";
+  };
 }

@@ -7,6 +7,7 @@ let
     fetchFromGitHub {
       owner = "SpaceVim";
       repo = "SpaceVim";
+      rev = "763045513d6227a59bdb2a3a772740c3be97ac01";
       sha256 = "763045513d6227a59bdb2a3a772740c3be97ac01";
     };
 
