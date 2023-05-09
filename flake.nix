@@ -21,12 +21,8 @@
         ./boot.nix
         ./environment.nix
         ./video.nix
-        ./git.nix
         ./home.nix
-        #./kitty.nix
         #./spacevim.nix
-        #./host.nix
-        #./mouse.nix
 	inputs.home-manager.nixosModules.home-manager
 	inputs.impermanence.nixosModules.impermanence
       ];

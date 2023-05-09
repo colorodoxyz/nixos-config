@@ -13,7 +13,7 @@
 
   programs.fuse.userAllowOther = true;
 
-  networking.hostName = "btwiusenixos"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.tailscale.enable = true;
@@ -50,14 +50,12 @@
     terminus_font
   ];
 
-  users.users.root.initialHashedPassword = "";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
     isNormalUser = true;
     description = "Speener";
     extraGroups = [ "networkmanager" "wheel" "workspace" ];
-    initialHashedPassword = "";
     packages = with pkgs; [];
   };
 

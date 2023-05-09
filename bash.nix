@@ -10,5 +10,6 @@
     gcheck="git checkout";
     la="ls -lhA";
     nxrb="sudo nixos-rebuild switch --flake /persist/nixConfig#nixos";
+    tailup="sudo tailscale up --accept-routes";
   };
 }
