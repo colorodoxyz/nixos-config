@@ -1,33 +1,51 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   environment = {
     variables = {
-      EDITOR = "vim";
+      EDITOR = "nvim";
       BROWSER = "firefox";
       TERMINAL = "kitty";
     };
   };
 
+  #environment.etc."current-system-packages".text =
+
+  /*
+  let
+     packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+     sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);
+     formatted = builtins.concatStringsSep "\n" sortedUnique;
+  in
+    formatted;
+  */
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    nodejs
+    gotop
+    nodePackages.aws-cdk
+    flameshot
+    libreoffice
+    tmate
     tailscale
     firefox
     spotify
     go_1_20
     rustc
+    cargo
     lxappearance
     grub
     steam
     gcc
     gdb
     wireguard-tools
-    vim
+    #vim
     neovim
     os-prober
     wget
-    git
+    gitFull
     ripgrep
     lsof
     i3
@@ -46,7 +64,7 @@
     signal-desktop
     slack
     droidcam
-    awscli
+    awscli2
     python3
     poetry
     neofetch
