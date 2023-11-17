@@ -9,5 +9,4 @@
   };
   sound.enable = true;
   nixpkgs.config.pulseaudio = true;
-  users.extraUsers.colorodo.extraGroups = [ "audio" ];
 }

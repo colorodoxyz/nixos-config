@@ -7,7 +7,10 @@
 {
   #options.boot.initrd.systemd.dbus.enable = true;
   #options.services.dbus.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
   networking.hostId = "3082e4d6";
+
+  virtualisation.docker.enable = true;
 
   #config.services.dbus.enable = true;
 
@@ -16,7 +19,10 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  services.tailscale.enable = true;
+  services.plex = {
+    enable = true;
+    openFirewall = false;
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -50,14 +56,20 @@
     terminus_font
   ];
 
-  users.users.root.initialHashedPassword = "$6$44KyzgHx9JrLoigD$nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
+  users.users.root.initialHashedPassword = "KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
     isNormalUser = true;
     description = "Speener";
-    extraGroups = [ "networkmanager" "wheel" "workspace" ];
-    initialHashedPassword = "$6$44KyzgHx9JrLoigD$nnASBI2H/KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "workspace"
+      "docker"
+      "audio"
+    ];
+    initialHashedPassword = "KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
     packages = with pkgs; [];
   };
 

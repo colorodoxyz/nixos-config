@@ -13,11 +13,11 @@
         home.persistence."/persist/home/colorodo" = {
             directories = [
                 ".ssh"
-                ".vim"
+                ".aws"
                 ".config/pulse"
                 ".config/Signal"
-                ".config/Slack"
                 ".config/discord"
+                ".background_image"
                 ".config/nvim"
                 ".config/spotify"
                 ".local/share/Steam"
@@ -32,7 +32,7 @@
             kitty = {
                 enable = true;
                 theme = "Argonaut";
-                #extraConfig = (builtins.readFile ./kitty.conf);
+                extraConfig = (builtins.readFile ./kitty.conf);
                 #background_image = "/home/colorodo/th-1524566410.jpg";
             };
             git = {

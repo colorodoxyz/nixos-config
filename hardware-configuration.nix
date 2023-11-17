@@ -13,15 +13,40 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  boot.supportedFilesystems = ["ntfs"];
+
+  # Bootloader
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      enable = true;
+      device = "nodev";
+      useOSProber = true;
+      efiSupport = true;
+    };
+  };
+
+  boot.kernelParams = [ "video=efifb:off,vesafb:off" "gfxpayload=text" ];
+
+  swapDevices = [];
+  #{device = "/persist/home/colorodo/swapfile";
+    #size = 32*1024;} ];
+
+
   users.groups.workspace.gid = 629;
 
   fileSystems."/" =
-    { device = "stateless/rootfs";
+    {
+      device = "stateless/rootfs";
       fsType = "zfs";
     };
 
   fileSystems."/nix" =
-    { device = "stateless/nix";
+    {
+      device = "stateless/nix";
       fsType = "zfs";
     };
 
@@ -32,16 +57,18 @@
     };
 
   fileSystems."/workspace" =
-    { device = "stateless/workspace";
+    {
+      device = "stateless/workspace";
       fsType = "zfs";
       neededForBoot = true;
       options = [ "gid=629" ];
     };
 
   fileSystems."/boot" =
-  { device = "stateless/boot";
-    fsType = "zfs";
-    neededForBoot = true;
+    {
+      device = "stateless/boot";
+      fsType = "zfs";
+      neededForBoot = true;
     };
 
   fileSystems."/boot/efi" =
@@ -55,8 +82,6 @@
       zpool export -a
     '';
 
-  swapDevices = [ ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -66,4 +91,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.keyboard.qmk.enable = true;
 }

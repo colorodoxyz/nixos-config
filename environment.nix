@@ -23,7 +23,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    tor
+    ranger
+    keepassxc
+    xclip
+    gzip
     nodejs
+    google-chrome
     gotop
     nodePackages.aws-cdk
     flameshot
@@ -32,16 +38,15 @@
     tailscale
     firefox
     spotify
-    go_1_20
+    go_1_21
     rustc
     cargo
+    zig
     lxappearance
-    grub
     steam
     gcc
     gdb
     wireguard-tools
-    #vim
     neovim
     os-prober
     wget
@@ -56,19 +61,16 @@
     discord
     vlc
     efibootmgr
-    docker
     gnumake
     qemu
     jq
     qbittorrent
     signal-desktop
-    slack
-    droidcam
     awscli2
     python3
+    python311Packages.pip
     poetry
     neofetch
-    tailscale
   ];
 
   environment.persistence."/persist" = {

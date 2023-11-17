@@ -18,13 +18,11 @@
         ./environment.nix
         ./audio.nix
         ./bash.nix
-        ./boot.nix
         ./environment.nix
         ./video.nix
         ./home.nix
-        #./spacevim.nix
-	inputs.home-manager.nixosModules.home-manager
-	inputs.impermanence.nixosModules.impermanence
+	    inputs.home-manager.nixosModules.home-manager
+	    inputs.impermanence.nixosModules.impermanence
       ];
     };
   };
