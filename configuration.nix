@@ -7,6 +7,7 @@
 {
   #options.boot.initrd.systemd.dbus.enable = true;
   #options.services.dbus.enable = true;
+
   systemd.services.NetworkManager-wait-online.enable = false;
   networking.hostId = "3082e4d6";
 
@@ -23,6 +24,23 @@
     enable = true;
     openFirewall = false;
   };
+
+  services.tailscale.enable = true;
+  /*
+  services.tor = {
+    enable = true;
+    openFirewall = true;
+    relay = {
+      enable = true;
+      role = "relay";
+    };
+    settings = {
+      ORPort = 9001;
+      ControlPort = 9051;
+      BandWidthRate = "1 MBytes";
+    };
+  };
+  */
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -56,7 +74,6 @@
     terminus_font
   ];
 
-  users.users.root.initialHashedPassword = "KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
@@ -69,7 +86,6 @@
       "docker"
       "audio"
     ];
-    initialHashedPassword = "KT9xzg0McJdfZXQJAyKDjdZH3APPIHlnlW06rxdVG2e/62eCPvQy.UW2BDCwgwINr11L8DQpkwYN.";
     packages = with pkgs; [];
   };
 

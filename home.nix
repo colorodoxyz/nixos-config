@@ -16,6 +16,7 @@
                 ".aws"
                 ".config/pulse"
                 ".config/Signal"
+                ".config/Slack"
                 ".config/discord"
                 ".background_image"
                 ".config/nvim"
@@ -59,6 +60,14 @@
                 "${modifier}+Shift+k" = "move down";
                 "${modifier}+Shift+l" = "move up";
                 "${modifier}+Shift+semicolon" = "move right";
+                "${modifier}+Left" = "resize grow width 1 px or 1 ppt";
+                "${modifier}+Down" = "resize shrink height 1 px or 1 ppt";
+                "${modifier}+Up" = "resize grow height 1 px or 1 ppt";
+                "${modifier}+Right" = "resize shrink width 1 px or 1 ppt";
+                "${modifier}+Shift+Left" = "resize grow width 2 px or 2 ppt";
+                "${modifier}+Shift+Down" = "resize shrink height 2 px or 2 ppt";
+                "${modifier}+Shift+Up" = "resize grow height 2 px or 2 ppt";
+                "${modifier}+Shift+Right" = "resize shrink width 2 px or 2 ppt";
 
                 "${modifier}+Return" = "exec kitty";
                 "${modifier}+b" = "exec firefox";

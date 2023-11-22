@@ -23,7 +23,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    tor
+    localstack
+    tmux
+    tor-browser
     ranger
     keepassxc
     xclip
@@ -71,6 +73,7 @@
     python311Packages.pip
     poetry
     neofetch
+    slack
   ];
 
   environment.persistence."/persist" = {
