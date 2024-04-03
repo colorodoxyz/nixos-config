@@ -85,7 +85,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     hermit
     source-code-pro
     terminus_font
