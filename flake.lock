@@ -71,11 +71,11 @@
     },
     "piss": {
       "locked": {
-        "lastModified": 1712111789,
-        "narHash": "sha256-rQLWIhl9FAJfsuqWGbttFypAftmfghVFf5BDEMWPD8g=",
+        "lastModified": 1712112289,
+        "narHash": "sha256-giRzThlk2zWrfRHKQu/tac5TinG22Y0H2h8vQWxUVNk=",
         "ref": "refs/heads/master",
-        "rev": "5a72435f8ab6936d4bc07d8e96494176ee7b99f3",
-        "revCount": 6,
+        "rev": "576855195be8b702389c2711c7aa24d1cb962faf",
+        "revCount": 7,
         "type": "git",
         "url": "file:./passwords"
       },
