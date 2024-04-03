@@ -8,10 +8,27 @@
   #options.boot.initrd.systemd.dbus.enable = true;
   #options.services.dbus.enable = true;
 
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+  '';
+
+/*
+  nixpkgs.overlays = [ (final: prev: {
+    xz = prev.xz.overrideAttrs (old: {
+      src = prev.fetchurl {
+        url = "mirror://sourceforge/lzmautils/xz-5.4.6.tar.bz2";
+        sha256 = "sha256-kThRsnTo4dMXgeyUnxwj6NvPDs9uc6JDbcIXad0+b0k=";
+      };
+    });
+  }) ];
+  */
+
   systemd.services.NetworkManager-wait-online.enable = false;
   networking.hostId = "3082e4d6";
 
   virtualisation.docker.enable = true;
+
+  #security.apparmor.enable = true;
 
   #config.services.dbus.enable = true;
 
@@ -74,6 +91,7 @@
     terminus_font
   ];
 
+  users.users.root.initialHashedPassword = inputs.piss.password;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
@@ -86,21 +104,27 @@
       "docker"
       "audio"
     ];
+    initialHashedPassword = inputs.piss.password;
     packages = with pkgs; [];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    #pinentryFlavor = "curses";
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  #services.openssh.enable = true;
+  #services.openssh.authorizedKeysFiles = [".ssh/authorized_keys"];
+  #services.openssh.passwordAuthentication = false; # originally true
+  #services.openssh.permitRootLogin = "yes";
+  #services.openssh.challengeResponseAuthentication = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

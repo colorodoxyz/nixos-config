@@ -1,0 +1,3 @@
+[submodule "passwords"]
+	path = passwords
+	url = ./passwords

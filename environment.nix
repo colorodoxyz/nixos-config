@@ -5,6 +5,7 @@
     variables = {
       EDITOR = "nvim";
       BROWSER = "firefox";
+      DEFAULT_BROWSER = "firefox";
       TERMINAL = "kitty";
     };
   };
@@ -22,58 +23,65 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    localstack
-    tmux
-    tor-browser
-    ranger
-    keepassxc
-    xclip
-    gzip
-    nodejs
-    google-chrome
-    gotop
-    nodePackages.aws-cdk
-    flameshot
-    libreoffice
-    tmate
-    tailscale
-    firefox
-    spotify
-    go_1_21
-    rustc
-    cargo
-    zig
-    lxappearance
-    steam
-    gcc
-    gdb
-    wireguard-tools
-    neovim
-    os-prober
-    wget
-    gitFull
-    ripgrep
-    lsof
-    i3
-    kitty
-    pulseaudioFull
-    paprefs
-    pavucontrol
-    discord
-    vlc
-    efibootmgr
-    gnumake
-    qemu
-    jq
-    qbittorrent
-    signal-desktop
-    awscli2
-    python3
-    python311Packages.pip
-    poetry
-    neofetch
-    slack
+  environment.systemPackages = [
+    pkgs.vscode
+    pkgs.element-desktop
+    pkgs.xournalpp
+    pkgs.pulumi
+    pkgs.s5cmd
+    pkgs.rclone
+    pkgs.sbt
+    pkgs.tmux
+    pkgs.tor-browser
+    pkgs.ranger
+    pkgs.keepassxc
+    pkgs.xclip
+    pkgs.gzip
+    pkgs.nodejs
+    pkgs.gotop
+    pkgs.nodePackages.aws-cdk
+    pkgs.flameshot
+    pkgs.libreoffice
+    pkgs.tmate
+    pkgs.tailscale
+    pkgs.firefox
+    pkgs.spotify
+    pkgs.go_1_21
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.zig
+    pkgs.lxappearance
+    pkgs.steam
+    pkgs.gcc
+    pkgs.gdb
+    pkgs.wireguard-tools
+    pkgs.neovim
+    pkgs.os-prober
+    pkgs.wget
+    pkgs.gitFull
+    pkgs.ripgrep
+    pkgs.lsof
+    pkgs.i3
+    pkgs.kitty
+    pkgs.pulseaudioFull
+    pkgs.paprefs
+    pkgs.pavucontrol
+    pkgs.discord
+    pkgs.vlc
+    pkgs.efibootmgr
+    pkgs.gnumake
+    pkgs.qemu
+    pkgs.jq
+    pkgs.qbittorrent
+    pkgs.signal-desktop
+    pkgs.awscli2
+    pkgs.python3
+    pkgs.python311Packages.pip
+    pkgs.poetry
+    pkgs.neofetch
+    pkgs.slack
+    pkgs.kubectl
+    pkgs.kubectx
   ];
 
   environment.persistence."/persist" = {

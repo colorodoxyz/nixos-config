@@ -1,7 +1,17 @@
-{ inputs, ... }:
+{ inputs, fetchurl, ... }:
 {
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.packageOverrides = nixpkgs: {
+    xz = nixpkgs.xz.overrideAttrs {
+      pname = "xz";
+      version = "5.4.6";
+      src = fetchurl {
+        url = "mirror://sourceforge/lzmautils/xz-${5.4.6}.tar.bz2";
+        sha256 = "sha256-kThRsnTo4dMXgeyUnxwj6NvPDs9uc6JDbcIXad0+b0k=";
+      };
+    };
+  };
 
     # Setup home-manager
     home-manager.users.colorodo = ({pkgs, ...} : {
@@ -15,12 +25,16 @@
                 ".ssh"
                 ".aws"
                 ".config/pulse"
+                ".gnupg"
+                ".kube"
                 ".config/Signal"
                 ".config/Slack"
                 ".config/discord"
                 ".background_image"
                 ".config/nvim"
                 ".config/spotify"
+                ".config/Element"
+                ".config/Code"
                 ".local/share/Steam"
                 ".local/share/nvim"
                 "go"
@@ -38,10 +52,12 @@
             };
             git = {
                 enable = true;
+                lfs.enable = true;
                 userName = "Spencer Liu";
                 userEmail = "spencer.liu.liu@gmail.com";
                 extraConfig = {
                     url."git@github.com:".insteadOf = "https://github.com/";
+                    #url."git@gogs.tail43567.ts.net".insteadOf = "http://gogs.tail43567.ts.net";
                 };
             };
         };
