@@ -2,7 +2,7 @@
   description = "colorodo's NixOS Flake";
 
   inputs = {
-    piss.url = "path:./passwords";
+    piss.url = "git+file:./passwords";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.11";

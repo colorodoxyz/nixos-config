@@ -91,7 +91,7 @@
     terminus_font
   ];
 
-  users.users.root.initialHashedPassword = inputs.piss.password;
+  users.users.root.hashedPassword = inputs.piss.password;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.colorodo = {
@@ -104,7 +104,7 @@
       "docker"
       "audio"
     ];
-    initialHashedPassword = inputs.piss.password;
+    hashedPassword = inputs.piss.password;
     packages = with pkgs; [];
   };
 
